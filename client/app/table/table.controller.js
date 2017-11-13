@@ -6,13 +6,42 @@
         .service('tabelaService', function($http, $window) {
 
     this.todasVagas = function(){
-    return $http.get("http://localhost:8090/vaga/");
+    return $http.get("http://localhost:8090/vaga");
   }
 
   this.todosCurriculos = function(){
-    return $http.get("http://localhost:8090/curriculo/");
+    return $http.get("http://localhost:8090/curriculo");
   }
+  
+    this.obterEmpresa = function(vaga){
+    return $http.get("http://localhost:8090/empresa/"+vaga.empresa.id);
+  }
+
+
+  this.curriculoRecebido = function(empresa, curriculo, vaga){
+         $http({
+        url: 'http://localhost:8090/curriculorecebido',
+        method: "POST",
+        data: {"empresa":empresa , "curriculo":curriculo, "vaga":vaga}
+    })
+    .then(function(response) {
+
+    },
+    function(response) { // optional
+            // failed
+    });
+  }
+
+
+
+
+
+
+
   });
+
+
+
 
     function nutritionController($mdEditDialog, $q, $scope, $timeout, tabelaService) {
         $scope.selected = [];
@@ -46,8 +75,20 @@
       });
 
 
-          $scope.teste = function () {
-           console.log("teste");
+          $scope.candidatar = function(vaga, curriculo) {
+           vaga.curriculo = undefined;
+
+           console.log(vaga);
+
+           tabelaService.obterEmpresa(vaga).then(function(d){
+                 var empresa = d.data;
+                 tabelaService.curriculoRecebido(empresa, curriculo, vaga);
+            });
+           console.log(curriculo);
+
+
+
+
         };
 
 
