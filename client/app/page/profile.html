@@ -141,7 +141,30 @@
             <article class="article">
                 <md-card class="no-margin-h">
                     <md-card-title style="padding-top: 32px;">
-                        Filtros:
+                    <div class="col-md-1">
+                         <h4>Filtros:</h4>
+                    </div>
+                  
+                         <md-input-container flex>
+                            <label>Área de atuação</label>
+                            <md-select ng-model="busca.area" ng-change="buscaCargo(busca.area)">
+                               <md-option ng-value="area" ng-repeat="area in areas">{{area.descricao}}</md-option>
+                               
+                            </md-select>
+                        </md-input-container>
+                        
+                         <md-input-container flex>
+                            <label>Cargo</label>
+                            <md-select ng-model="busca.cargo">
+                               <md-option ng-value="cargo"  ng-repeat="cargo in cargos">{{cargo.descricao}}</md-option>
+                               
+                            </md-select>
+                        </md-input-container>
+
+                        <md-button class="md-raised btn-w-md md-primary" ng-click="buscar(busca)">Buscar</md-button>
+                  
+                  
+                        
                         <!--<div layout="row" layout-wrap class="checkboxes">
                             <md-checkbox ng-model="options.rowSelection">Row Selection</md-checkbox>
                             <md-checkbox ng-model="options.multiSelect">Multiple Selection</md-checkbox>
@@ -215,12 +238,12 @@
                         </table>
                     </md-table-container>
 
-                          <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="80" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+                          <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{vagas.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
                 </md-card>
+
             </article>
         </div>
     </div>
-
 
 </section>
 

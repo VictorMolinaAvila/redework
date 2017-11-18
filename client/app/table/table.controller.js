@@ -6,47 +6,56 @@
         .service('tabelaService', function($http, $window) {
 
     this.todasVagas = function(){
-    return $http.get("http://localhost:8090/vaga");
+    return $http.get("http://localhost:8090/vaga/");
+  }
+
+  this.todasVagasBuscar = function(busca){
+    return $http.get("http://localhost:8090/vaga/ObterVagasDoFiltroSelecionado/"+busca.cargo.id);
   }
 
   this.todosCurriculos = function(){
-    return $http.get("http://localhost:8090/curriculo");
-  }
-  
-    this.obterEmpresa = function(vaga){
-    return $http.get("http://localhost:8090/empresa/"+vaga.empresa.id);
+    var user_id = window.sessionStorage.getItem('user_id');
+    return $http.get("http://localhost:8090/curriculo/candidato/"+user_id);
   }
 
+  this.todasAreas = function(){
+    return $http.get("http://localhost:8090/areaAtuacao/");
+  }
+
+  this.buscaCargo = function(id){
+    return $http.get("http://localhost:8090/cargo/ObterCargosDaAreaDeAtuacaoSelecionada/"+id);
+    }
+
+  
+   this.obterEmpresa = function(vaga){
+    return $http.get("http://localhost:8090/empresa/"+ vaga.empresa.empresa_id);
+  }
 
   this.curriculoRecebido = function(empresa, curriculo, vaga){
-         $http({
-        url: 'http://localhost:8090/curriculorecebido',
+    $http({
+        url: 'http://localhost:8090//curriculorecebido',
         method: "POST",
-        data: {"empresa":empresa , "curriculo":curriculo, "vaga":vaga}
+        headers: {
+           'Content-Type': 'application/json'
+         },
+        data: {"empresa": empresa, "curriculo": curriculo, "vaga":vaga}
     })
-    .then(function(response) {
+    .then(function(d){
 
     },
-    function(response) { // optional
-            // failed
+    function(d){
+
     });
   }
 
 
 
-
-
-
-
   });
-
-
-
 
     function nutritionController($mdEditDialog, $q, $scope, $timeout, tabelaService) {
         $scope.selected = [];
         $scope.limitOptions = [5, 10, 15];
-        
+        $scope.curriculos = {};
         $scope.options = {
             rowSelection: true,
             multiSelect: true,
@@ -64,30 +73,60 @@
             page: 1
         };
 
+        tabelaService.todasAreas().then(function(d){
 
-         tabelaService.todasVagas().then(function(d){
+          $scope.areas = d.data;
+          
+       
+      });
+
+        tabelaService.todasVagas().then(function(d){
 
           $scope.vagas = d.data;
           
-           tabelaService.todosCurriculos().then(function(d){
-                 $scope.curriculos = d.data;
-            });
+          tabelaService.todosCurriculos().then(function(d){
+
+          $scope.curriculos = d.data;
+          
+      });
+       
       });
 
+        $scope.buscaCargo = function (busca) {
+        
+            //busca = JSON.parse(busca)
+           tabelaService.buscaCargo(busca.id).then(function(d){
 
-          $scope.candidatar = function(vaga, curriculo) {
+          $scope.cargos = d.data;
+          
+      });
+        };
+
+            $scope.buscar= function (busca) {
+        
+            //busca = JSON.parse(busca)
+           tabelaService.todasVagasBuscar(busca).then(function(d){
+
+          $scope.vagas = d.data;
+          
+       
+      });
+
+        };
+
+
+
+         
+
+
+          $scope.candidatar = function (vaga, curriculo) {
            vaga.curriculo = undefined;
-
            console.log(vaga);
-
            tabelaService.obterEmpresa(vaga).then(function(d){
-                 var empresa = d.data;
-                 tabelaService.curriculoRecebido(empresa, curriculo, vaga);
-            });
-           console.log(curriculo);
+            var empresa = d.data;
+            tabelaService.curriculoRecebido(empresa, curriculo, vaga);
 
-
-
+        });
 
         };
 
