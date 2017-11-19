@@ -1,0 +1,69 @@
+<div class="page">
+
+    <div class="row ui-section">
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-heading"><h4>Currículo</h4></div>
+                <div class="panel-body padding-xl">
+                    <section class="container-fluid with-maxwidth chapter">
+
+    <div class="row ui-section">
+        <div class="col-md-12">
+           <button class="md-raised md-accent md-button md-ink-ripple" ng-click="criar()">Novo</button>  
+            <article class="article">
+                    
+                 
+                    
+                    <md-table-container>
+                        <table md-table md-progress="promise">
+                            <thead ng-if="!options.decapitate" md-head>
+                                <tr md-row>
+                                    <th md-column><span>Título</span></th>
+                                    <th md-column><span>CEP</span></th>
+                                    <th md-column><span>E-mail</span></th>
+                                    <th md-column><span>Situação</span></th>
+                                    <th md-column><span ></span></th>
+                                    <th md-column><span></span></th>
+                                   
+                                    <!--<th md-column md-order-by="comment">
+                                        <md-icon>comments</md-icon>
+                                        <span>Comments</span>
+                                    </th>-->
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row  ng-repeat="curriculo in curriculos">
+                                   <td md-cell>{{curriculo.nome}}</td>
+                                   <td md-cell>{{curriculo.cep}}</td> 
+                                   <td md-cell>{{curriculo.email}}</td>  
+                                   <td md-cell>{{curriculo.situacao}}</td>   
+                                    <td md-cell class="text-right"><button class="md-raised md-accent md-button" ng-click="editar(curriculo.id)"><i class="fa fa-pencil"></i></button>
+                                    <button class="md-raised md-warn md-button md-ink-ripple" ng-click="deletar(curriculo.id, ev)"><i class="fa fa-trash-o"></i></button></td>  
+                                    <!--
+                                    <td md-cell>{{dessert.calories.value}}</td>
+                                    <td md-cell>{{dessert.fat.value | number: 2}}</td>
+                                    <td md-cell>{{dessert.carbs.value}}</td>
+                                    <td md-cell>{{dessert.protein.value | number: 2}}</td>
+                                    <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
+                                    <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
+                                        {{dessert.comment || 'Add a comment'}}
+                                    </td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+
+                          <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{curriculos.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+                
+
+            </article>
+        </div>
+    </div>
+
+</section>
+                </div>
+            </section>     
+        </div>
+    </div>
+
+</div>
