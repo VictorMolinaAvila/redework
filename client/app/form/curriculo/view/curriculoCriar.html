@@ -35,6 +35,41 @@
                                                     <label>CEP*</label>
                                                  <input ng-model="curriculo.cep" mask='99999-999' maxlength="9" mask-limit='9'>
                                                  </md-input-container>
+                                                 <md-button class="md-raised btn-w-md md-primary" ng-disabled="!curriculo.cep" ng-click="buscaCep(curriculo.cep)">Buscar endereço</md-button>
+                                                  <div ng-if="curriculo.logradouro">
+                                                     <br>
+                                                     <md-input-container flex >
+                                                        <label>Cidade*</label>
+                                                     <input ng-model="curriculo.localidade" disabled>
+                                                     </md-input-container>
+                                                 </div>
+                                                  <div ng-if="curriculo.logradouro">
+                                                     <md-input-container flex >
+                                                        <label>UF*</label>
+                                                     <input ng-model="curriculo.uf" disabled>
+                                                     </md-input-container>
+                                                 </div>
+                                                 <div ng-if="curriculo.logradouro">
+                                                     <br>
+                                                     <md-input-container flex >
+                                                        <label>Rua*</label>
+                                                     <input ng-model="curriculo.logradouro" disabled>
+                                                     </md-input-container>
+                                                 </div>
+                                                 <div ng-if="curriculo.logradouro">
+                                                     <br>
+                                                     <md-input-container flex >
+                                                        <label>Bairro*</label>
+                                                     <input ng-model="curriculo.bairro" disabled>
+                                                     </md-input-container>
+                                                 </div>
+
+
+
+
+
+
+                                                 <br>
                                                  <br>
                                                  <label>Gênero*</label>
                                                  <br>
@@ -85,7 +120,7 @@
                                                  </md-input-container>
                                         </div>
                                         <div class="ui-wizard-actions">
-                                            <md-button type="submit" wz-next class="md-raised btn-w-md md-primary" ng-disabled="curriculo.nome == undefined || curriculo.cpf == undefined || curriculo.cep == undefined || curriculo.sexo == undefined || curriculo.estadoCivil == undefined || curriculo.deficiente == undefined || curriculo.situacao == undefined || curriculo.email == undefined || curriculo.telCelular == undefined || curriculo.telResidencia == undefined">Ir para formação</md-button>
+                                            <md-button type="submit" wz-next class="md-raised btn-w-md md-primary"  ng-disabled="!curriculo.nome || !curriculo.cpf || !curriculo.cep || !curriculo.sexo || !curriculo.estadoCivil || !curriculo.deficiente || !curriculo.situacao || !curriculo.email || !curriculo.telCelular || !curriculo.telResidencia">Ir para formação</md-button>
                                         </div>
                                     </wz-step>
                                     <wz-step wz-title="Formação">
@@ -125,7 +160,7 @@
                                             <md-input-container flex>
                                                 <label>Instituição de ensino*</label>
                                                 <md-select ng-model="formacao.instituicao">
-                                                   <md-option value="ensino_fundamental_cursando"> Ensino fundamental cursando</md-option>
+                                                   <md-option value="{{instituicao}}" ng-repeat="instituicao in instituicoes">{{instituicao}}</md-option>
                                                 </md-select>
                                             </md-input-container>
                                             <br>
@@ -163,6 +198,7 @@
                                                 <md-input-container flex>
                                                     <label>Nível*</label>
                                                     <md-select ng-model="idioma.nivel">
+                                                    <md-option value="básico"> básico</md-option>
                                                        <md-option value="intermediario"> Intermediário</md-option>
                                                         <md-option value="tecnico"> técnico</md-option>
                                                         <md-option value="avancado"> Avançado</md-option>
@@ -173,7 +209,7 @@
                                         </div>
                                         <div class="ui-wizard-actions">
                                             <md-button wz-previous="logStep()"  class="md-raised btn-w-md">Voltar</md-button>
-                                            <md-button wz-next="logStep()" class="md-raised btn-w-md md-primary"  ng-disabled="(listaFormacao[listaFormacao.length - 1].grauEscolaridade == undefined || listaFormacao[listaFormacao.length - 1].instituicao == undefined || listaFormacao[listaFormacao.length - 1].inicio == undefined || listaFormacao[listaFormacao.length - 1].conclusao == undefined) || (listaIdioma[listaIdioma.length - 1].idioma == undefined || listaIdioma[listaIdioma.length - 1].nivel == undefined)">Ir para experiência</md-button>
+                                            <md-button wz-next="logStep()" class="md-raised btn-w-md md-primary"  ng-disabled="!listaFormacao[listaFormacao.length - 1].grauEscolaridade || !listaFormacao[listaFormacao.length - 1].instituicao || !listaFormacao[listaFormacao.length - 1].inicio || !listaFormacao[listaFormacao.length - 1].conclusao">Ir para experiência</md-button>
                                         </div>
                                     </wz-step>
                                     <wz-step wz-title="Experiência">
@@ -197,22 +233,35 @@
                                                 <input ng-model="experienciaProfissional.nome">
                                                 </md-input-container>
                                                 <br>
-                                                <md-input-container flex>
-                                                <label>Area de atuação*</label>
-                                                    <md-select ng-model="experienciaProfissional.areaAtuacao">
-                                                       <md-option value="ensino_fundamental_cursando"> Ensino fundamental cursando</md-option>
-                                                    </md-select>
-                                                </md-input-container>
-                                               <br>
-                                               <br>
-                                               <md-input-container flex>
-                                                <label>Cargo*</label>
-                                                <md-select ng-model="experienciaProfissional.cargo">
-                                                   <md-option value="ensino_fundamental_cursando"> Ensino fundamental cursando</md-option>
-                                                </md-select>
-                                                </md-input-container>
-                                                <br>
-                                                <br>
+                                               
+
+                                            <md-input-container flex>
+                                            <label>Área de atuação</label>
+                                            <md-select ng-model="experienciaProfissional.areaAtuacao" ng-change="buscaCargo(experienciaProfissional.areaAtuacao)">
+                                               <md-option ng-value="areaAtuacao" ng-repeat="areaAtuacao in areas" ng-if="areaAtuacao">{{areaAtuacao.descricao}}</md-option>
+                                               <md-option ng-value="areaAtuacao.descricao" ng-repeat="areaAtuacao in areas" ng-if="areaAtuacao.descricao">{{areaAtuacao.descricao}}</md-option>
+                                               
+                                            </md-select>
+                                        </md-input-container>
+                                        <br>
+                                        <br>
+                                         <md-input-container flex>
+                                            <label>Cargo</label>
+                                            <md-select ng-model="experienciaProfissional.cargo">
+                                               <md-option ng-value="cargo.descricao"  ng-repeat="cargo in cargos">{{cargo.descricao}}</md-option>
+                                               
+                                            </md-select>
+                                        </md-input-container>
+                                        <br>
+                                        <br>
+
+
+
+
+
+
+
+
                                                 <i class="material-icons">date_range</i>
                                                  <md-input-container flex>
                                                 <label>Data de admissão*</label>
@@ -240,14 +289,8 @@
                                                 <br>
                                                 <md-input-container flex>
                                                     <label>Habilidade</label>
-                                                    <md-select ng-model="habilidade.habilidade">
-                                                       <md-option value="ingles"> Inglês</md-option>
-                                                        <md-option value="espanhol"> Espanhol</md-option>
-                                                        <md-option value="mandarim"> Mandarim</md-option>
-                                                        <md-option value="japones"> Japonês</md-option>
-                                                        <md-option value="arabe"> Árabe</md-option>
-                                                        <md-option value="alemao"> Alemão</md-option>
-                                                        <md-option value="russo"> Russo</md-option>
+                                                    <md-select ng-model="habilidade.habilidade" >
+                                                       <md-option value="{{habilidadeBanco.habilidade}}" ng-repeat='habilidadeBanco in habilidades'>{{habilidadeBanco.habilidade}}</md-option>
                                                     </md-select>
                                                 </md-input-container>
                                             </div>
@@ -263,20 +306,16 @@
                                         <div class="ui-wizard-actions">
                                             <md-button ng-click="goBack()" class="md-raised btn-w-md md-accent">Início</md-button>
                                             <md-button wz-previous="logStep()"  class="md-raised btn-w-md">Voltar</md-button>
-                                            <md-button wz-finish="logStep()" class="md-raised btn-w-md md-primary"  ng-disabled="(listaExperienciaProfissional[listaExperienciaProfissional.length - 1].nome == undefined || listaExperienciaProfissional[listaExperienciaProfissional.length - 1].areaAtuacao == undefined ||
-                                            listaExperienciaProfissional[listaExperienciaProfissional.length - 1].cargo == undefined ||
-                                            listaExperienciaProfissional[listaExperienciaProfissional.length - 1].dataAdmissao == undefined ||
-                                            listaExperienciaProfissional[listaExperienciaProfissional.length - 1].dataSaida == undefined ||
-                                            listaExperienciaProfissional[listaExperienciaProfissional.length - 1].realizacoes == undefined)
+                                            <md-button wz-finish="logStep()" class="md-raised btn-w-md md-primary"  ng-disabled="!listaExperienciaProfissional[listaExperienciaProfissional.length - 1].nome || !listaExperienciaProfissional[listaExperienciaProfissional.length - 1].areaAtuacao ||
+                                            !listaExperienciaProfissional[listaExperienciaProfissional.length - 1].cargo ||
+                                            !listaExperienciaProfissional[listaExperienciaProfissional.length - 1].dataAdmissao ||
+                                            !listaExperienciaProfissional[listaExperienciaProfissional.length - 1].dataSaida ||
+                                            !listaExperienciaProfissional[listaExperienciaProfissional.length - 1].realizacoes == undefined
                                             ">Criar Currículo</md-button>
                                         </div>
                                     </wz-step>
                                 </wizard>
                             </section>
-                            {{curriculo}}
-
-
-
 
                         </div>
                     </div>

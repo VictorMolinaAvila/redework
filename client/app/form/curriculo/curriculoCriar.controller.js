@@ -5,20 +5,38 @@
         .controller('curriculoCriarController', ['$scope', '$q', '$timeout', 'WizardHandler', '$window', '$mdDialog','curriculoCriarService', curriculoCriarController])
          .service('curriculoCriarService', function($http, $window) {
 
-    var curriculo = $http.get('http://localhost:8090/curriculo').then(function(d){
-            console.log(d.data)
-      });
+    this.buscaCep = function(busca){
+        return $http.get("http://viacep.com.br/ws/"+busca+"/json/");
+    }
+
+    this.instituicao = function(){
+        return $http.get("http://localhost:8091/instituicao/");
+    }
+
+    this.habilidades = function(){
+        return $http.get("http://localhost:8091/habilidadeBanco/");
+    }
+
+
+    this.todasAreas = function(){
+        return $http.get("http://localhost:8091/areaAtuacao/");
+    }
+
+    this.buscaCargo = function(id){
+        return $http.get("http://localhost:8091/cargo/ObterCargosDaAreaDeAtuacaoSelecionada/"+id);
+    }
+
 
     this.criarCurriculo = function(curriculo){
 
           var user_id = window.sessionStorage.getItem('user_id');
 
-          $http.get('http://localhost:8090/candidato/'+user_id).then(function(response){
+          $http.get('http://localhost:8091/candidato/'+user_id).then(function(response){
 
             curriculo.candidato = response.data;
 
             $http({
-        url: 'http://localhost:8090/curriculo',
+        url: 'http://localhost:8091/curriculo',
         method: "POST",
         data: curriculo
     })
@@ -64,8 +82,64 @@
         $scope.curriculo.experienciasProfissionais = $scope.listaExperienciaProfissional;
         $scope.curriculo.habilidades = $scope.listaHabilidade;
 
+         $scope.curriculo.logradouro = undefined;
+         $scope.curriculo.bairro = undefined;
+         $scope.curriculo.localidade = undefined;
+         $scope.curriculo.uf = undefined;
+
 
         /*Curriculo fim*/
+                 curriculoCriarService.instituicao().then(function(d){
+
+          $scope.instituicoes = d.data;
+          
+       
+      });
+
+         curriculoCriarService.habilidades().then(function(d){
+
+          $scope.habilidades = d.data;
+          
+       
+      });
+
+        curriculoCriarService.todasAreas().then(function(d){
+
+          $scope.areas = d.data;
+          
+       
+      });
+
+        $scope.buscaCep = function (busca) {
+            //busca = JSON.parse(busca)
+           curriculoCriarService.buscaCep(busca).then(function(d){
+
+         $scope.curriculo.logradouro = d.data.logradouro;
+         $scope.curriculo.bairro = d.data.bairro;
+         $scope.curriculo.localidade = d.data.localidade;
+         $scope.curriculo.uf = d.data.uf;
+          
+      });
+            };
+
+        $scope.buscaCargo = function (busca) {
+            //busca = JSON.parse(busca)
+           curriculoCriarService.buscaCargo(busca.id).then(function(d){
+
+          $scope.cargos = d.data;
+          
+      });
+
+           $scope.listaExperienciaProfissional[$scope.listaExperienciaProfissional.length - 1].areaAtuacao = busca.descricao;
+
+           console.log($scope.listaExperienciaProfissional[$scope.listaExperienciaProfissional.length - 1].areaAtuacao);
+
+        };
+
+
+
+
+
 
         $scope.adicionarFormacao = function() {
             var newItemNo = $scope.listaFormacao.length+1;
@@ -148,7 +222,7 @@
 
                    curriculoCriarService.criarCurriculo(curriculo);
 
-       
+            $state.go('page/profile');
         };
 
 

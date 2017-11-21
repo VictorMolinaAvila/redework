@@ -7,11 +7,11 @@
 
     this.obterCurriculos = function(){
     var user_id = window.sessionStorage.getItem('user_id');
-    return $http.get("http://localhost:8090/curriculo/candidato/"+user_id);
+    return $http.get("http://localhost:8091/curriculo/candidato/"+user_id);
   }
 
    this.deletarCurriculo = function(id){
-     $http.delete("http://localhost:8090/curriculo/"+id);
+     $http.delete("http://localhost:8091/curriculo/"+id);
      window.location.reload();
   }
 

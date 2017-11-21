@@ -145,8 +145,17 @@
        
         <div class="col-md-12 panel-body">
             <article class="article">
+                 <md-card class="no-margin-h">
+                    <div ng-repeat="notificacao in notificacoes">
+                         <div class="callout callout-success"  ng-if="notificacao.status=='APROVADO'">
+                            <h4>Você foi aprovado para o cargo {{notificacao.curriculoEnviado.vaga.cargo.descricao}}!</h4>
+                            <p>A empresa {{notificacao.curriculoEnviado.empresa.nomeFantasia}} entrará em contato por e-mail:{{notificacao.curriculoEnviado.curriculo.email}}, fique atento!</p>
+                        </div>
+                    </div>
+                </md-card>
+
                 <md-card class="no-margin-h">
-                    
+
                     <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
                         <div class="md-toolbar-tools">
                             <!--<span>Nutrition</span>-->
@@ -212,7 +221,6 @@
                             </tbody>
                         </table>
                     </md-table-container>
-
                           <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{notificacoes.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
                 </md-card>
 

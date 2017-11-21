@@ -6,44 +6,44 @@
         .service('tabelaService', function($http, $window) {
 
     this.todasVagas = function(){
-    return $http.get("http://localhost:8090/vaga/");
+    return $http.get("http://localhost:8091/vaga/");
   }
 
   this.todasVagasBuscar = function(busca){
-    return $http.get("http://localhost:8090/vaga/ObterVagasDoFiltroSelecionado/"+busca.cargo.id);
+    return $http.get("http://localhost:8091/vaga/ObterVagasDoFiltroSelecionado/"+busca.cargo.id);
   }
 
   this.candidato = function(){
     var user_id = window.sessionStorage.getItem('user_id');
-    return $http.get("http://localhost:8090/candidato/"+user_id);
+    return $http.get("http://localhost:8091/candidato/"+user_id);
   }
 
   this.selecao = function(){
     var user_id = window.sessionStorage.getItem('user_id');
-    return $http.get("http://localhost:8090/notificacao/candidato/"+user_id);
+    return $http.get("http://localhost:8091/notificacao/candidato/"+user_id);
   }
 
   this.todosCurriculos = function(){
     var user_id = window.sessionStorage.getItem('user_id');
-    return $http.get("http://localhost:8090/curriculo/candidato/"+user_id);
+    return $http.get("http://localhost:8091/curriculo/candidato/"+user_id);
   }
 
   this.todasAreas = function(){
-    return $http.get("http://localhost:8090/areaAtuacao/");
+    return $http.get("http://localhost:8091/areaAtuacao/");
   }
 
   this.buscaCargo = function(id){
-    return $http.get("http://localhost:8090/cargo/ObterCargosDaAreaDeAtuacaoSelecionada/"+id);
+    return $http.get("http://localhost:8091/cargo/ObterCargosDaAreaDeAtuacaoSelecionada/"+id);
     }
 
   
    this.obterEmpresa = function(vaga){
-    return $http.get("http://localhost:8090/empresa/"+ vaga.empresa.empresa_id);
+    return $http.get("http://localhost:8091/empresa/"+ vaga.empresa.empresa_id);
   }
 
   this.curriculoRecebido = function(empresa, curriculo, vaga){
     $http({
-        url: 'http://localhost:8090//curriculorecebido',
+        url: 'http://localhost:8091/curriculorecebido',
         method: "POST",
         headers: {
            'Content-Type': 'application/json'

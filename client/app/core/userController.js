@@ -44,7 +44,7 @@
         window.sessionStorage.setItem('user_id', id);
 
     	$http({
-        url: 'http://localhost:8090/candidato',
+        url: 'http://localhost:8091/candidato',
         method: "POST",
         data: {"user_id":id , "nome":nome, "email":email, "foto":foto}
     })

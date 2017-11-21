@@ -9,14 +9,14 @@
 
           var user_id = window.sessionStorage.getItem('user_id');
 
-          $http.get('http://localhost:8090/candidato/'+user_id).then(function(d){
+          $http.get('http://localhost:8091/candidato/'+user_id).then(function(d){
             
             
             certificacao.candidato = d.data;
             console.log(certificacao.candidato)
 
             $http({
-        url: 'http://localhost:8090/certificacao',
+        url: 'http://localhost:8091/certificacao',
         method: "POST",
         headers: {
            'Content-Type': 'application/json'

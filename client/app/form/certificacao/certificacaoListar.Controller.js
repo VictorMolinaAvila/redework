@@ -7,11 +7,11 @@
 
   this.obterCertificacao = function(){
     var user_id = window.sessionStorage.getItem('user_id');
-    return $http.get("http://localhost:8090/certificacao/candidato/"+user_id);
+    return $http.get("http://localhost:8091/certificacao/candidato/"+user_id);
   }
 
    this.deletarCertificacao = function(id){
-     $http.delete("http://localhost:8090/certificacao/"+id);
+     $http.delete("http://localhost:8091/certificacao/"+id);
      window.location.reload();
   }
 

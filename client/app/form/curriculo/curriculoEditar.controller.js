@@ -6,7 +6,7 @@
          .service('curriculoEditarService', function($http, $window) {
 
       this.obterCurriculo = function(id){
-    return $http.get("http://localhost:8090/curriculo/"+id);
+    return $http.get("http://localhost:8091/curriculo/"+id);
   }
 
 
@@ -14,12 +14,12 @@
 
           var user_id = window.sessionStorage.getItem('user_id');
 
-          $http.get('http://localhost:8090/candidato/'+user_id).then(function(response){
+          $http.get('http://localhost:8091/candidato/'+user_id).then(function(response){
 
             curriculo.candidato = response.data;
 
             $http({
-        url: 'http://localhost:8090/curriculo',
+        url: 'http://localhost:8091/curriculo',
         method: "PATCH",
         data: curriculo
     })

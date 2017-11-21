@@ -6,13 +6,13 @@
          .service('certificacaoEditarService', function($http, $window) {
 
   this.obterCertificacao = function(id){
-    return $http.get("http://localhost:8090/certificacao/"+id);
+    return $http.get("http://localhost:8091/certificacao/"+id);
   }
 
   this.editarCertificacao = function(certificacao){
 console.log(certificacao);
         $http({
-        url: 'http://localhost:8090/certificacao',
+        url: 'http://localhost:8091/certificacao',
         method: "POST",
         headers: {
            'Content-Type': 'application/json'
