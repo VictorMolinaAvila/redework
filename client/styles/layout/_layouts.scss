@@ -187,3 +187,44 @@ table.md-table td.md-cell, table.md-table th.md-column {
 .label-danger {
     font-size: 13px;
 }
+
+.steps-indicator{
+  height: 60px;
+}
+.steps-indicator li {
+  line-height: 35px;
+}
+.steps-indicator li a:before {
+  top: -15px;
+  left: calc(50% - 15px);
+  width: 30px;
+  height: 30px;
+}
+.steps-indicator li.current {
+  border-color: #007DC6 ;
+}
+.steps-indicator li.current a:before {
+  background-color: #007DC6 ;
+}
+.steps-indicator li.done{
+  border-color: #339933 ;
+}
+.steps-indicator li a{
+  font-size: 12px;
+}
+.steps-indicator li.done a:before {
+  background-color: #339933 ;
+  font-family: FontAwesome;
+  color: white;
+  content: "\f00c";
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+.steps-indicator li.editing{
+  border-color: #ffb206 ;
+}
+.steps-indicator li.editing a:before {
+  background-color: #ffb206 ;
+}
+

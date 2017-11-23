@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.ui.form')
-        .controller('curriculoCriarController', ['$scope', '$q', '$timeout', 'WizardHandler', '$window', '$mdDialog','curriculoCriarService', curriculoCriarController])
+        .controller('curriculoCriarController', ['$scope', '$q', '$timeout', 'WizardHandler', '$window', '$mdDialog', '$state','curriculoCriarService', curriculoCriarController])
          .service('curriculoCriarService', function($http, $window) {
 
     this.buscaCep = function(busca){
@@ -68,7 +68,7 @@
 
         
 
-    function curriculoCriarController ($scope, $q, $timeout, WizardHandler, $window, $mdDialog, curriculoCriarService) {
+    function curriculoCriarController ($scope, $q, $timeout, WizardHandler, $window, $mdDialog, $state, curriculoCriarService) {
         $scope.stepActive = true;
         $scope.listaFormacao = [{formacaoIndex:1}];
         $scope.listaIdioma = [{idiomaIndex:1}];

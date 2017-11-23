@@ -5,6 +5,7 @@
         <div class="profile-img">
             <div ng-if="candidato">
             <img alt="" src="{{candidato.foto}}" class="img-circle">
+            <span style="color:white; margin-left:10px; font-size:28px"><b>{{candidato.nome}}</b></span>
             </div>
             <div ng-if="!candidato">
             <img alt="" src="http://www.politize.com.br/wp-content/uploads/2016/08/imagem-sem-foto-de-perfil-do-facebook-1348864936180_956x5001.jpg" class="img-circle">
@@ -208,8 +209,6 @@
                                     <th md-column md-numeric md-order-by="calories.value" md-desc><span>Data de criação</span></th>
                                     <th md-column md-numeric md-order-by="calories.value" md-desc><span>Empresa</span></th>
                                     <th md-column md-numeric md-order-by="carbs.value"><span>Cargo</span></th>
-                                    <th md-column md-numeric md-order-by="carbs.value"><span>Estado</span></th>
-                                    <th md-column md-numeric md-order-by="carbs.value"><span>Cidade</span></th>
                                     <th md-column md-numeric md-order-by="protein.value"><span>Escolher currículo*</span></th>
                                     <th md-column md-numeric><span></span></th>
                                     <!--<th md-column md-order-by="comment">
@@ -220,19 +219,27 @@
                             </thead>
                             <tbody md-body>
                                 <tr md-row ng-disabled="dessert.calories.value > 400" ng-repeat="vaga in vagas | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
-                                   <td md-cell>{{vaga.descricao}}</td>
+                                   <td md-cell>{{vaga.dataCriacao| date:'dd/MM/yyyy'}}</td>
                                    <td md-cell>{{vaga.empresa.nomeFantasia}}</td> 
-                                   <td md-cell>{{vaga.cargo.descricao}}</td>  
-                                   <td md-cell>{{vaga.empresa.estado.descricao}}</td> 
-                                   <td md-cell>{{vaga.empresa.cidade.descricao}}</td>   
-
+                                   <td md-cell>{{vaga.cargo.descricao}}</td>    
                                    <td md-cell>
 
                                         <md-select ng-model="vaga.curriculo" placeholder="Escolher curriculo*">
                                             <md-option ng-value="curriculo" ng-repeat="curriculo in curriculos">{{curriculo.nome}}</md-option>
                                         </md-select>
                                     </td> 
-                                    <td md-cell><button class="md-raised md-accent md-button md-ink-ripple" ng-click="candidatar(vaga, vaga.curriculo)" ng-disabled="!vaga.curriculo">Candidatar</button></td>   
+                                    <td md-cell>
+
+                                       <button  class="md-raised md-accent md-button md-ink-ripple" ng-click="modal(vaga)" class="verde" style ="width:5px;"><i class="fa fa-eye fa-2x"></i></button>
+                                    </td> 
+
+                                    <td md-cell><button class="md-raised md-accent md-button md-ink-ripple" ng-click="candidatar(vaga, vaga.curriculo)" ng-disabled="!vaga.curriculo">Candidatar</button>
+
+
+
+                                                    
+
+                                    </td>   
                                     <!--
                                     <td md-cell>{{dessert.calories.value}}</td>
                                     <td md-cell>{{dessert.fat.value | number: 2}}</td>
@@ -249,7 +256,7 @@
 
                           <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{vagas.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
                 </md-card>
-
+    
             </article>
         </div>
     </div>

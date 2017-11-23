@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.table')
-        .controller('nutritionController', ['$mdEditDialog', '$q', '$scope', '$timeout', '$state', 'tabelaService', nutritionController])
+        .controller('nutritionController', ['$mdEditDialog', '$q', '$scope', '$timeout', '$state','$uibModal','$filter','tabelaService', nutritionController])
         .service('tabelaService', function($http, $window) {
 
     this.todasVagas = function(){
@@ -62,7 +62,7 @@
 
   });
 
-    function nutritionController($mdEditDialog, $q, $scope, $timeout, $state, tabelaService) {
+    function nutritionController($mdEditDialog, $q, $scope, $timeout, $state, $uibModal, $filter, tabelaService) {
         
         $scope.selected = [];
         $scope.limitOptions = [5, 10, 15];
@@ -83,6 +83,21 @@
             limit: 5,
             page: 1
         };
+
+      $scope.modal = function(vaga) {
+
+$uibModal.open({ templateUrl:"app/form/curriculo/view/teste.html",  controller: function($scope) {
+
+          $scope.vaga = vaga;
+          console.log($scope.vaga);
+           console.log(vaga);
+
+
+        } }) 
+//$uibModal.open({ templateUrl:"{{vaga.cargo.descricao}}", scope:$scope, }) ;
+//$uibModal.open({ templateUrl:"<div>teste</div>"}) 
+
+    }
 
         tabelaService.todasAreas().then(function(d){
 
