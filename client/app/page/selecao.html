@@ -1,0 +1,236 @@
+
+<div class="page page-profile" ng-controller="nutritionController">
+
+    <header class="profile-header">
+        <div class="profile-img">
+            <div ng-if="candidato">
+            <img alt="" src="{{candidato.foto}}" class="img-circle">
+            <span style="color:white; margin-left:10px; font-size:28px"><b>{{candidato.nome}}</b></span>
+            </div>
+            <div ng-if="!candidato">
+            <img alt="" src="http://www.politize.com.br/wp-content/uploads/2016/08/imagem-sem-foto-de-perfil-do-facebook-1348864936180_956x5001.jpg" class="img-circle">
+            </div>
+
+        </div>
+
+        <div class="profile-info">
+            <ul class="list-unstyled list-inline">
+           <!-- <li><i class="fa fa-camera"></i> Alterar foto do perfil</li>
+            <li><i class="fa fa-image"></i> Alterar imagem da capa</li>
+            </ul>-->
+        </div>
+    </header>
+
+    <!--<div class="divider divider-lg"></div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-danger">
+                <i class="fa fa-video-camera"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">39</p>
+                <p class="text-muted">Amazing Films</p>
+            </div>
+            </div>                    
+        </div>
+        <div class="col-sm-3">
+            <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-warning">
+                <i class="fa fa-image"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">63</p>
+                <p class="text-muted">Wonderful Photos</p>
+            </div>
+            </div>                    
+        </div>
+        <div class="col-sm-3">
+            <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-success">
+                <i class="fa fa-bookmark"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">55</p>
+                <p class="text-muted">New Collections</p>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="panel mini-box">
+            <span class="btn-icon btn-icon-round btn-icon-lg-alt bg-info">
+                <i class="fa fa-check"></i>
+            </span>
+            <div class="box-info">
+                <p class="size-h2">34</p>
+                <p class="text-muted">Tasks Finised</p>
+            </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="divider divider-lg"></div>
+    <div class="row ui-section" ng-controller="nutritionController">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Busca de notificacoes</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+            <div class="panel-body">
+                <table class="table no-margin">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Project</th>
+                            <th>Status</th>
+                            <th>Manager</th>
+                            <th>Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><span class="color-success"><i class="fa fa-level-up"></i></span> TWLT</td>
+                            <td><span class="label label-info">Pending</span></td>
+                            <td>Amery Lee</td>
+                            <td><md-progress-linear md-mode="determinate" value="55" class="md-progressbar brand-primary no-margin"></md-progress-linear></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><span class="color-success"><i class="fa fa-level-up"></i></span> A16Z</td>
+                            <td><span class="label label-primary">Due</span></td>
+                            <td>Romayne Carlyn</td>
+                            <td><md-progress-linear md-mode="determinate" value="34" class="md-progressbar brand-success no-margin"></md-progress-linear></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><span class="color-warning"><i class="fa fa-level-down"></i></span> DARK</td>
+                            <td><span class="label label-success">Due</span></td>
+                            <td>Marybeth Joanna</td>
+                            <td><md-progress-linear md-mode="determinate" value="68" class="md-progressbar brand-info no-margin"></md-progress-linear></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><span class="color-info"><i class="fa fa-level-up"></i></span> Q300</td>
+                            <td><span class="label label-danger">Blocked</span></td>
+                            <td>Jonah Benny</td>
+                            <td><md-progress-linear md-mode="determinate" value="52" class="md-progressbar brand-warning no-margin"></md-progress-linear></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td><span class="color-danger"><i class="fa fa-level-down"></i></span> RVNG</td>
+                            <td><span class="label label-warning">Suspended</span></td>
+                            <td>Daly Royle</td>
+                            <td><md-progress-linear md-mode="determinate" value="77" class="md-progressbar brand-danger no-margin"></md-progress-linear></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td><span class="color-info"><i class="fa fa-level-down"></i></span> FDSA</td>
+                            <td><span class="label label-info">Suspended</span></td>
+                            <td>Jane Swift</td>
+                            <td><md-progress-linear md-mode="determinate" value="55" class="md-progressbar brand-success no-margin"></md-progress-linear></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+
+-->
+        <section class="container-fluid with-maxwidth chapter">
+
+    <div class="row ui-section panel panel-default">
+        
+            <div class="panel-heading"><h4>Processo seletivo</h4></div>
+       
+        <div class="col-md-12 panel-body">
+            <article class="article">
+                 <md-card class="no-margin-h">
+                    <div ng-repeat="notificacao in notificacoes">
+                         <div class="callout callout-success"  ng-if="notificacao.status=='APROVADO'">
+                            <h4>Você foi aprovado para o cargo {{notificacao.curriculoEnviado.vaga.cargo.descricao}}!</h4>
+                            <p>A empresa {{notificacao.curriculoEnviado.empresa.nomeFantasia}} entrará em contato por e-mail:{{notificacao.curriculoEnviado.curriculo.email}}, fique atento!</p>
+                        </div>
+                    </div>
+                </md-card>
+
+                <md-card class="no-margin-h">
+
+                    <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+                        <div class="md-toolbar-tools">
+                            <!--<span>Nutrition</span>-->
+                            <div flex></div>
+                            <md-button class="md-icon-button" ng-click="loadStuff()">
+                                <md-icon>refresh</md-icon>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+                    
+                    <md-toolbar class="md-table-toolbar alternate" ng-show="options.rowSelection && selected.length">
+                        <div class="md-toolbar-tools">
+                            <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected</span>
+                        </div>
+                    </md-toolbar>
+                    
+                    <md-table-container>
+                        <table md-table md-progress="promise">
+                            <thead ng-if="!options.decapitate" md-head md-order="query.order" md-on-reorder="logOrder">
+                                <tr md-row>
+                                    <th md-column md-numeric md-order-by="calories.value" md-desc><span>Envio candidatura</span></th>
+                                    <th md-column md-numeric md-order-by="calories.value" md-desc><span>Empresa</span></th>
+                                    <th md-column md-numeric md-order-by="carbs.value"><span>Cargo</span></th>
+                                    <th md-column md-numeric md-order-by="carbs.value"><span>Estado</span></th>
+                                    <th md-column md-numeric md-order-by="carbs.value"><span>Cidade</span></th>
+                                    <th md-column md-numeric md-order-by="protein.value"><span>Status</span></th>
+                                    <th md-column md-numeric><span></span></th>
+                                    <!--<th md-column md-order-by="comment">
+                                        <md-icon>comments</md-icon>
+                                        <span>Comments</span>
+                                    </th>-->
+                                </tr>
+                            </thead>
+                            <tbody md-body>
+                                <tr md-row ng-disabled="dessert.calories.value > 400" ng-repeat="notificacao in notificacoes | filter: filter.search | orderBy: query.order | limitTo: query.limit : (query.page -1) * query.limit">
+                                   <td md-cell>{{notificacao.dataNotificacao | date:'dd/MM/yyyy'}}</td>
+                                   <td md-cell>{{notificacao.curriculoEnviado.empresa.nomeFantasia}}</td> 
+                                   <td md-cell>{{notificacao.curriculoEnviado.vaga.cargo.descricao}}</td>  
+                                   <td md-cell>{{notificacao.curriculoEnviado.empresa.estado.descricao}}</td> 
+                                   <td md-cell>{{notificacao.curriculoEnviado.empresa.cidade.descricao}}</td> 
+                                   <td md-cell>
+
+                                    <span class="label label-warning" ng-if="notificacao.status=='PENDENTE'">Pendente</span>
+                                    <span class="label label-success" ng-if="notificacao.status=='APROVADO'">Aprovado</span>
+                                    <span class="label label-info" ng-if="notificacao.status=='VISUALIZADO'">Visualizado</span>
+                                    <span class="label label-danger" ng-if="notificacao.status=='REJEITADO'">Rejeitado</span>
+
+
+
+                                   </td> 
+                                     
+                                
+                                    <!--
+                                    <td md-cell>{{dessert.calories.value}}</td>
+                                    <td md-cell>{{dessert.fat.value | number: 2}}</td>
+                                    <td md-cell>{{dessert.carbs.value}}</td>
+                                    <td md-cell>{{dessert.protein.value | number: 2}}</td>
+                                    <td md-cell hide-gt-xs show-gt-lg>{{dessert.iron.value}}%</td>
+                                    <td md-cell ng-click="editComment($event, dessert)" ng-class="{'md-placeholder': !dessert.comment}">
+                                        {{dessert.comment || 'Add a comment'}}
+                                    </td>-->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </md-table-container>
+                          <md-table-pagination md-limit="query.limit" md-limit-options="limitOptions" md-page="query.page" md-total="{{notificacoes.length}}" md-page-select="options.pageSelect" md-boundary-links="options.boundaryLinks" md-on-paginate="logPagination"></md-table-pagination>
+                </md-card>
+
+            </article>
+        </div>
+    </div>
+
+</section>
+
+
+
+</div>
